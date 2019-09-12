@@ -1,9 +1,12 @@
-function [avgbytrait, se, allTraces]=AvgERGTraceByTrait(S, Color, Genotype, Intensity, ND)
+function [avgbytrait, se, sd, allTraces, metadata]=AvgERGTraceByTrait(S, Color, Genotype, Intensity, ND)
 avgbytrait=0;
 numtraces=0;
+disp(['Loading ', Color, ' ', Genotype, ' at ND ', ND]);
 % figure()
 % hold on
 j=1;
+metadata=S(1);
+
 for i=1:length(S)
     
     if Color==true
@@ -30,17 +33,26 @@ for i=1:length(S)
     else
         NDBool=(S(i).ND==ND);
     end
-    
+    disp('Color|Genotype|Int|Keep|ND');
+    disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
     if ColorBool && GenotypeBool && IntensityBool && KeepBool && NDBool
 %         disp(S(i).trial);
         [thistrial, allrepeats]=ERGLoad(S(i).fly, S(i).trial);
         avgbytrait=avgbytrait+ERGLoad(S(i).fly, S(i).trial);
         numtraces=numtraces+1;
         
-        dt=.000005;
-
-        allTraces(j, :, :)=allrepeats;
         
+        dt=10/length(thistrial);
+%         dt=.000005;
+        for k=1:10
+%         disp((j-1)*10+k)
+        metadata((j-1)*10+k).fly=S(i).fly;
+        metadata((j-1)*10+k).genotype=S(i).genotype;
+        metadata((j-1)*10+k).color=S(i).color;
+        metadata((j-1)*10+k).trial=k;
+        end
+        allTraces(j, :, :)=allrepeats;
+       
         j=j+1;
     end
     
@@ -48,11 +60,14 @@ end
 
 avgbytrait=avgbytrait/numtraces;
 
-avgbytrait=avgbytrait-mean(avgbytrait(200000:240000));
-
-allTraces=reshape(allTraces, [], 2000000);
+avgbytrait=avgbytrait-mean(avgbytrait(1/dt:1.2/dt));
+whos metadata
+allTraces=reshape(allTraces, [], length(thistrial));
+metadata=metadata';
+% metadata=reshape(metadata, [], length(thistrial));
 % whos
 numtraces=size(allTraces);
+sd=std(squeeze(allTraces(:,:)), 0, 1);
 se=std(squeeze(allTraces(:,:)), 0, 1)/sqrt(numtraces(1));
 
 end
