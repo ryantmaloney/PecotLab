@@ -37,10 +37,9 @@ for i=1:length(S)
     disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
     if ColorBool && GenotypeBool && IntensityBool && KeepBool && NDBool
 %         disp(S(i).trial);
-        [thistrial, allrepeats]=ERGLoad(S(i).fly, S(i).trial);
-        avgbytrait=avgbytrait+ERGLoad(S(i).fly, S(i).trial);
+        [thistrial, allrepeats]=ERGLoad(S(i).fly, S(i).trial, S(i).filelocation);
+        avgbytrait=avgbytrait+ERGLoad(S(i).fly, S(i).trial, S(i).filelocation);
         numtraces=numtraces+1;
-        
         
         dt=10/length(thistrial);
 %         dt=.000005;

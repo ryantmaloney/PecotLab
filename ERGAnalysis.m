@@ -92,8 +92,6 @@ toc
 [AvgWhite100CKOND2, SEWhite100CKOND2, SDWhite100CKOND2, AllWhite100CKOND2, MetaWhite100CKOND2]=AvgERGTraceByTrait(E, 'w', 'CKO', 100, 2);
 [AvgWhite100CKOND1, SEWhite100CKOND1, SDWhite100CKOND1, AllWhite100CKOND1, MetaWhite100CKOND1]=AvgERGTraceByTrait(E, 'w', 'CKO', 100, 1);
 
-
-
 %%
 toc
 %

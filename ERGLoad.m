@@ -1,7 +1,7 @@
-function [avg2, allmatrix]=ERGLoad(flynumber, trialnumber)
-filepathstr='/Users/ryanmaloney/Dropbox/Pecot/ERGs/PRMisexpression';
+function [avg2, allmatrix]=ERGLoad(flynumber, trialnumber, filepathstr)
+% filepathstr='/Users/ryanmaloney/Dropbox/Pecot/ERGs/PRMisexpression';
 % x=dir('/Users/ryanmaloney/Dropbox/Pecot/ERGs/ERG');
-x=dir('/Users/ryanmaloney/Dropbox/Pecot/ERGs/CKO-ERGS');
+% x=dir('/Users/ryanmaloney/Dropbox/Pecot/ERGs/CKO-ERGS');
 x=dir(filepathstr);
 
 numfiles=size(x);

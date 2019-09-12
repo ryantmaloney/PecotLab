@@ -1,16 +1,16 @@
-% function S=ERGtabletoStruct()
-
+function S=ERGtabletoStruct(csvfilename, ERGfolder)
 % function S=ERGtabletoStruct()
 
 %For DKO vs BRP
-% filename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTable.csv';
+% csvfilename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTable.csv';
 % for CKO vs Gal4
-% filename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTableCKO2.csv';
+% csvfilename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTableCKO2.csv';
 % For Misexpression vs Control
-filename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTablePRMisexpression.csv';
+% csvfilename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTablePRMisexpression.csv';
+% ERGfolder='/Users/ryanmaloney/Dropbox/Pecot/ERGs/PRMisexpression';
 
 % M = readtable(filename, 'HeaderLines', 1)
-M = readtable(filename);
+M = readtable(csvfilename);
 S = struct([]);
 for i=0:(height(M)-1)
    S(i+1).keep=M{i+1, 'keep'};
@@ -21,12 +21,15 @@ for i=0:(height(M)-1)
    S(i+1).trial=M{i+1, 'trial'};
    S(i+1).color='w';
    S(i+1).intensity=100;
+   S(i+1).filelocation=ERGfolder;
 %    disp(i)
+end
+
 end
 % endS
 
-E=S;
-disp('Done')
+% E=S;
+% disp('Done')
 
 % %For DKO vs BRP
 % filename = '/Users/ryanmaloney/Dropbox/Matlab/PecotAnalysis/ERGTable.csv';
