@@ -1,4 +1,20 @@
-function S=ERGtabletoStruct(csvfilename, ERGfolder)
+function S=ERGtabletoStruct(varargin)
+if nargin==2
+    csvpathfilename=varargin{1}
+    ERGfolder=varargin{2}
+else
+    disp('Select CSV file with ERG Data')
+    [csvfilename, path]=uigetfile('*.csv','Select CSV with ERG Data');
+    csvpathfilename=[path,csvfilename];
+    disp('Select an ERG file')
+    [~, ERGfolder]=uigetfile('*.ibw','Select CSV with ERG Data');
+end
+
+if ~csvfilename | ~ERGfolder
+   disp('Did not get files')
+   return
+end
+    
 % function S=ERGtabletoStruct()
 
 %For DKO vs BRP
@@ -10,7 +26,7 @@ function S=ERGtabletoStruct(csvfilename, ERGfolder)
 % ERGfolder='/Users/ryanmaloney/Dropbox/Pecot/ERGs/PRMisexpression';
 
 % M = readtable(filename, 'HeaderLines', 1)
-M = readtable(csvfilename);
+M = readtable(csvpathfilename);
 S = struct([]);
 for i=0:(height(M)-1)
    S(i+1).keep=M{i+1, 'keep'};
