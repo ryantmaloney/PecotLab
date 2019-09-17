@@ -10,10 +10,10 @@ else
     [~, ERGfolder]=uigetfile('*.ibw','Select CSV with ERG Data');
 end
 
-if ~csvfilename | ~ERGfolder
-   disp('Did not get files')
-   return
-end
+% if ~(csvfilename && ERGfolder)
+%    disp('Did not get files')
+%    return
+% end
     
 % function S=ERGtabletoStruct()
 
@@ -27,6 +27,12 @@ end
 
 % M = readtable(filename, 'HeaderLines', 1)
 M = readtable(csvpathfilename);
+disp('Location of CSV File');
+disp(csvpathfilename);
+
+disp('ERG folder locations');
+disp(ERGfolder);
+
 S = struct([]);
 for i=0:(height(M)-1)
    S(i+1).keep=M{i+1, 'keep'};
