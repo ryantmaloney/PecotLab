@@ -10,6 +10,7 @@ for j=Genotypestoanalyze
     for i=1:6
         [OS(geni).ND(i).average, OS(geni).ND(i).SE, OS(geni).ND(i).SD, OS(geni).ND(i).All]=AvgERGTraceByTrait(S, 'w', string(j), 100, i-1);
     end
+    geni=geni+1;
 end
-geni=geni+1;
+
 end
