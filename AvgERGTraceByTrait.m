@@ -1,9 +1,8 @@
 function [avgbytrait, se, sd, allTraces, metadata]=AvgERGTraceByTrait(S, Color, Genotype, Intensity, ND)
 avgbytrait=0;
 numtraces=0;
-disp(['Loading ', Color, ' ', Genotype, ' at ND ', ND]);
-% figure()
-% hold on
+disp(strcat('Loading ', Color, ' ', Genotype, ' at ND ', ND));
+
 j=1;
 metadata=S(1);
 
@@ -33,8 +32,8 @@ for i=1:length(S)
     else
         NDBool=(S(i).ND==ND);
     end
-    disp('Color|Genotype|Int|Keep|ND');
-    disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
+%     disp('Color|Genotype|Int|Keep|ND');
+%     disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
     if ColorBool && GenotypeBool && IntensityBool && KeepBool && NDBool
 %         disp(S(i).trial);
         [thistrial, allrepeats]=ERGLoad(S(i).fly, S(i).trial, S(i).filelocation);
@@ -60,7 +59,7 @@ end
 avgbytrait=avgbytrait/numtraces;
 
 avgbytrait=avgbytrait-mean(avgbytrait(1/dt:1.2/dt));
-whos metadata
+% whos metadata
 allTraces=reshape(allTraces, [], length(thistrial));
 metadata=metadata';
 % metadata=reshape(metadata, [], length(thistrial));

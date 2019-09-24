@@ -11,7 +11,6 @@ for i=1:numfiles
     regexExp=['(F', num2str(flynumber), ').*(T', num2str(trialnumber), ').*(RecordWave)'];
 
 	if regexp(filename, regexExp)
-%         disp(x(i).name);
         matchfilename=x(i).name;
     end 
 end
@@ -30,7 +29,7 @@ D=IBWread(filepath);
 
 t=1:D.Nsam;
 t=t*D.dx;
-%
+
 % filterwindow=1001;
 lowpassfreq=1000;
 % downsamplerate=floor(filterwindow/2);
@@ -53,8 +52,6 @@ for i=1:repeats
 %     nextTrial=medfilt1(nextTrial, filterwindow);
     nextTrial=lowpass(nextTrial, lowpassfreq, 1/D.dx);
 
-%     whos
-    
     avg2=avg2+nextTrial(1:downsamplerate:end)';
     allmatrix(i, :)=nextTrial(1:downsamplerate:end);
 %     whos

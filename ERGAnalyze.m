@@ -5,6 +5,7 @@ function OS=ERGAnalyze(S, Genotypestoanalyze)
 OS=struct([]);
 
 geni=1;
+
 for j=Genotypestoanalyze
     OS(geni).genotype=j;
     for i=1:6
