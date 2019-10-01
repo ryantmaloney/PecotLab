@@ -20,7 +20,7 @@ n=length(OnTransientPositive);
 OnTransientPositiveStd=std(OnTransientPositive)/sqrt(n);
 OffTransientNegativeStd=std(OffTransientNegative)/sqrt(n);
 SteadyStateStd=std(steadystate)/sqrt(n);
-whos metadata
+% whos metadata
 ERGTraits={metadata, OnTransientPositive, OnTransientPositiveMean, OnTransientPositiveStd, OffTransientNegative, OffTransientNegativeMean,OffTransientNegativeStd, steadystate, SteadyStateMean, SteadyStateStd};
 % size(ERGArray(:, round(1.255/dt):round(1.26/dt)))
 % disp(Max1)

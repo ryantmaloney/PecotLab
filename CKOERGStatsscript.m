@@ -192,7 +192,6 @@ for i=1:height(ERGTable)
 end
 % end
 
-
 e2=expandedTable(:, [1:3, 5, 8, 11, 14:15]);
 % e2=expandedTable(:, [1:4, 7, 10, 13:14]);
 % disp(e2{1:4, :});

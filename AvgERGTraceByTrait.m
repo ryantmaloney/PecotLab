@@ -1,7 +1,8 @@
 function [avgbytrait, se, sd, allTraces, metadata]=AvgERGTraceByTrait(S, Color, Genotype, Intensity, ND)
 avgbytrait=0;
 numtraces=0;
-disp(strcat('Loading ', Color, ' ', Genotype, ' at ND ', ND));
+% whos
+disp(strcat('Loading ', Color, ' ', Genotype, ' at ND ', num2str(ND)));
 
 j=1;
 metadata=S(1);
@@ -32,25 +33,25 @@ for i=1:length(S)
     else
         NDBool=(S(i).ND==ND);
     end
-%     disp('Color|Genotype|Int|Keep|ND');
-%     disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
+    %     disp('Color|Genotype|Int|Keep|ND');
+    %     disp([ColorBool, GenotypeBool, IntensityBool, KeepBool, NDBool]);
     if ColorBool && GenotypeBool && IntensityBool && KeepBool && NDBool
-%         disp(S(i).trial);
+        %         disp(S(i).trial);
         [thistrial, allrepeats]=ERGLoad(S(i).fly, S(i).trial, S(i).filelocation);
         avgbytrait=avgbytrait+ERGLoad(S(i).fly, S(i).trial, S(i).filelocation);
         numtraces=numtraces+1;
         
         dt=10/length(thistrial);
-%         dt=.000005;
+        %         dt=.000005;
         for k=1:10
-%         disp((j-1)*10+k)
-        metadata((j-1)*10+k).fly=S(i).fly;
-        metadata((j-1)*10+k).genotype=S(i).genotype;
-        metadata((j-1)*10+k).color=S(i).color;
-        metadata((j-1)*10+k).trial=k;
+            %         disp((j-1)*10+k)
+            metadata((j-1)*10+k).fly=S(i).fly;
+            metadata((j-1)*10+k).genotype=S(i).genotype;
+            metadata((j-1)*10+k).color=S(i).color;
+            metadata((j-1)*10+k).trial=k;
         end
         allTraces(j, :, :)=allrepeats;
-       
+        
         j=j+1;
     end
     

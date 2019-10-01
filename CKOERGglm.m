@@ -7,12 +7,8 @@ mdl = fitglm(e2, formula)
 formula = 'OffTransientNegative ~ Genotype*ND';
 mdl = fitglm(e2, formula)
 
-
 formula = 'SteadyState ~ Genotype*ND';
 mdl = fitglm(e2, formula)
-% mdl = fitglm(e2, modelspec, 'Distribution');
-% mdl=fitglm(e2(:,4),e2(:,3));
-
 
 %%
 
@@ -26,8 +22,6 @@ sslme=fitlme(e3,formula)
 disp(formula)
 formula = 'SteadyState ~ ND + (1|Fly)';
 sslme2=fitlme(e2,formula)
-
-
 
 sscomptheor=compare(sslme2, sslme, 'CheckNesting',true)
 chi2pdf(2*(sscomptheor.LogLik(2)-sscomptheor.LogLik(1)),2)*2

@@ -118,7 +118,7 @@ legend([fg3BRP.mainLine,fg3DKO.mainLine], {'CTL', ' DKO'});
 %    violin({W_ND0_DKO{i}; W_ND0_BRP{i}}');
 % end
 % function [OnTransientPositive, OffTransientNegative, steadystate]=ERGStats(ERGArray)
-
+%%
 % ERGTable;
 totaltrials=0;
 for i=1:height(ERGTable)
