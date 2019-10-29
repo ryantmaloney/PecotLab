@@ -1,5 +1,7 @@
 function [ERGTable, etrunc]=ERGsignificance(OS)
-%
+%[ERGTable, etrunc]=ERGsignificance(OS) plots traits and creates a table of information to run statistics on
+%later using an OS structure from ERGAnalyze.
+
 varNames = {'ND','Genotype', 'Metadata', 'OnTransientPositive', 'OnTransientPositiveMean', 'OnTransientPositiveStd', 'OffTransientNegative','OffTransientNegativeMean','OffTransientNegativeStd', 'SteadyState', 'SteadyStateMean', 'SteadyStateStd'};
 varTypes = {'double','string', 'cell', 'cell', 'double','double', 'cell','double', 'double', 'cell','double', 'double'};
 numFlies=length(OS)*length(OS(1).ND);

@@ -1,6 +1,6 @@
 function H=plotERG(OS, varargin)
-% PLOTERG(OS, combinedgraph) Plot a structure from 
-% PLOTERG(OS) Plot 
+% PLOTERG(OS, combinedgraph) Plot a structure from
+% PLOTERG(OS) Plot
 
 if nargin > 0
     disp(nargin)
@@ -28,7 +28,7 @@ cm2=jet/2;
 
 hold on
 mainlineArray=gobjects(6,1);
-whos mainlineArray
+
 if combinedgraph
     figure(1)
     clf
@@ -36,12 +36,15 @@ if combinedgraph
 end
 
 for g=1:length(OS)
+    
+    ciinc=8;
+    ci=12;
     if ~combinedgraph
         figure(g)
         clf
+        ciinc=40;
     end
-    ciinc=8;
-    ci=12;
+    
     
     for ND=1:6 %This should be 6
         
@@ -49,23 +52,23 @@ for g=1:length(OS)
         H=shadedErrorBar(t,  OS(g).ND(ND).average.*yscalefactor, OS(g).ND(ND).SE*yscalefactor,...
             'lineProps', {'color', cm1(ci, :)/g,  'DisplayName', string(DisplayName), 'LineWidth',  lw});
         beAline=H.mainLine;
-%         disp(strcat('ND:',num2str(ND),'g:', num2str(g)));
-%         whos beAline
+        %         disp(strcat('ND:',num2str(ND),'g:', num2str(g)));
+        %         whos beAline
         if combinedgraph
-        mainlineArray(ND+(g-1)*6,1)=beAline;
+            mainlineArray(ND+(g-1)*6,1)=beAline;
         else
-          mainlineArray(ND,1)=beAline;  
+            mainlineArray(ND,1)=beAline;
         end
-%         whos mainlineArray
+        %         whos mainlineArray
         ci=ci+ciinc;
     end
     if ~combinedgraph
         legendArray=mainlineArray;
-%         whos legendArray
+        %         whos legendArray
         %         disp(size(numel(legendArray)));
         legendArray=squeeze(reshape(legendArray, numel(legendArray), 1));
         
-%         whos legendArray
+        %         whos legendArray
         legend(legendArray);
         
         xlabel('Time (s)')
